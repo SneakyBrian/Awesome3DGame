@@ -4,18 +4,20 @@
 
 <h2>Game</h2>
 
-<div id="container" style="background: #000; width: 400px; height: 300px;"></div>
+<div id="container" style="background: #000; width: 800px; height: 600px;"></div>
 
 @section scripts {
 
     <script type="text/javascript">
         $(function () {
 
-
+            // get the DOM element to attach to
+            // - assume we've got jQuery to hand
+            var $container = $('#container');
 
             // set the scene size
-            var WIDTH = 400,
-                HEIGHT = 300;
+            var WIDTH = $container.width(),
+                HEIGHT = $container.height();
 
             // set some camera attributes
             var VIEW_ANGLE = 45,
@@ -23,9 +25,6 @@
                 NEAR = 0.1,
                 FAR = 10000;
 
-            // get the DOM element to attach to
-            // - assume we've got jQuery to hand
-            var $container = $('#container');
 
             // create a WebGL renderer, camera
             // and a scene
@@ -34,6 +33,7 @@
                                             ASPECT,
                                             NEAR,
                                             FAR);
+
             var scene = new THREE.Scene();
             scene.fog = new THREE.Fog(0x000000, 3500, 15000);
             scene.fog.color.setHSL(0.51, 0.4, 0.01);
