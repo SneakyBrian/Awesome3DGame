@@ -20,8 +20,68 @@
 
             var composer;
 
-            init();
-            animate();
+            // world
+
+            var s = 250;
+
+            var cube = new THREE.CubeGeometry(s, s, s);
+            var material = new THREE.MeshPhongMaterial({ ambient: 0x333333, color: 0xffffff, specular: 0xffffff, shininess: 50 });
+
+            var playerList = {};
+
+            var playerHub = $.connection.playerHub;
+
+            var playerName = new Date().getTime().toString();
+
+            playerHub.client.updatePlayerPosition = function (name, x, y, z) {
+
+                //if it's me, bail
+                if (name == playerName) {
+                    return;
+                }
+
+                //console.log(name + ", x:" + x + ", y:" + y + ", z:" + z);
+
+                //find item in list with specified name
+                var player = playerList[name];
+
+                //if the item isn't found, create one
+                if (!player) {
+
+                    var mesh = new THREE.Mesh(cube, material);
+
+                    //mesh.position.x = 8000 * (2.0 * Math.random() - 1.0);
+                    //mesh.position.y = 8000 * (2.0 * Math.random() - 1.0);
+                    //mesh.position.z = 8000 * (2.0 * Math.random() - 1.0);
+
+                    mesh.rotation.x = Math.random() * Math.PI;
+                    mesh.rotation.y = Math.random() * Math.PI;
+                    mesh.rotation.z = Math.random() * Math.PI;
+
+                    mesh.matrixAutoUpdate = false;
+                    mesh.updateMatrix();
+
+                    scene.add(mesh);
+
+                    player = playerList[name] = mesh;
+                }
+
+                //set x, y, z position
+                player.position.x = x;
+                player.position.y = y;
+                player.position.z = z;
+            };
+
+            //connect to hub
+            $.connection.hub.start().done(function () {
+
+                init();
+                animate();
+
+            });
+
+            //init();
+            //animate();
 
             function init() {
 
@@ -47,32 +107,27 @@
                 scene.fog = new THREE.Fog(0x000000, 3500, 15000);
                 scene.fog.color.setHSL(0.51, 0.4, 0.01);
 
-                // world
-
-                var s = 250;
-
-                var cube = new THREE.CubeGeometry(s, s, s);
-                var material = new THREE.MeshPhongMaterial({ ambient: 0x333333, color: 0xffffff, specular: 0xffffff, shininess: 50 });
 
 
-                for (var i = 0; i < 3000; i++) {
 
-                    var mesh = new THREE.Mesh(cube, material);
+                //for (var i = 0; i < 3000; i++) {
 
-                    mesh.position.x = 8000 * (2.0 * Math.random() - 1.0);
-                    mesh.position.y = 8000 * (2.0 * Math.random() - 1.0);
-                    mesh.position.z = 8000 * (2.0 * Math.random() - 1.0);
+                //    var mesh = new THREE.Mesh(cube, material);
 
-                    mesh.rotation.x = Math.random() * Math.PI;
-                    mesh.rotation.y = Math.random() * Math.PI;
-                    mesh.rotation.z = Math.random() * Math.PI;
+                //    mesh.position.x = 8000 * (2.0 * Math.random() - 1.0);
+                //    mesh.position.y = 8000 * (2.0 * Math.random() - 1.0);
+                //    mesh.position.z = 8000 * (2.0 * Math.random() - 1.0);
 
-                    mesh.matrixAutoUpdate = false;
-                    mesh.updateMatrix();
+                //    mesh.rotation.x = Math.random() * Math.PI;
+                //    mesh.rotation.y = Math.random() * Math.PI;
+                //    mesh.rotation.z = Math.random() * Math.PI;
 
-                    scene.add(mesh);
+                //    mesh.matrixAutoUpdate = false;
+                //    mesh.updateMatrix();
 
-                }
+                //    scene.add(mesh);
+
+                //}
 
 
                 // lights
@@ -197,6 +252,11 @@
                 var delta = clock.getDelta();
 
                 controls.update(delta);
+
+                //send the player camera position
+                //TODO: Only send when it changes
+                playerHub.server.updatePlayerPosition(playerName, camera.position.x, camera.position.y, camera.position.z);
+
                 renderer.render(scene, camera);
 
             }
