@@ -11,6 +11,8 @@
     <script type="text/javascript">
         $(function () {
 
+
+
             // set the scene size
             var WIDTH = 400,
                 HEIGHT = 300;
@@ -33,6 +35,10 @@
                                             NEAR,
                                             FAR);
             var scene = new THREE.Scene();
+            scene.fog = new THREE.Fog(0x000000, 3500, 15000);
+            scene.fog.color.setHSL(0.51, 0.4, 0.01);
+
+            var clock = new THREE.Clock();
 
             // the camera starts at 0,0,0 so pull it back
             camera.position.z = 300;
@@ -43,40 +49,52 @@
             // attach the render-supplied DOM element
             $container.append(renderer.domElement);
 
-            // create the sphere's material
-            var sphereMaterial = new THREE.MeshLambertMaterial(
-            {
-                color: 0xCC0000
-            });
+            var geometry = new THREE.CubeGeometry(1, 1, 1);
+            var material = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
+            var cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
 
-            // set up the sphere vars
-            var radius = 50, segments = 16, rings = 16;
+            controls = new THREE.FlyControls(camera);
 
-            // create a new mesh with sphere geometry -
-            // we will cover the sphereMaterial next!
-            var sphere = new THREE.Mesh(
-               new THREE.SphereGeometry(radius, segments, rings),
-               sphereMaterial);
-
-            // add the sphere to the scene
-            scene.add(sphere);
+            controls.movementSpeed = 25;
+            controls.domElement = container;
+            controls.rollSpeed = Math.PI / 6;
+            controls.autoForward = false;
+            controls.dragToLook = false
 
             // and the camera
             scene.add(camera);
 
-            // create a point light
-            var pointLight = new THREE.PointLight(0xFFFFFF);
+            // lights
 
-            // set its position
-            pointLight.position.x = 10;
-            pointLight.position.y = 50;
-            pointLight.position.z = 130;
+            var ambient = new THREE.AmbientLight(0xffffff);
+            ambient.color.setHSL(0.1, 0.3, 0.2);
+            scene.add(ambient);
 
-            // add to the scene
-            scene.add(pointLight);
+
+            var dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
+            dirLight.position.set(0, -1, 0).normalize();
+            scene.add(dirLight);
+
+            dirLight.color.setHSL(0.1, 0.7, 0.5);
+
+            camera.position.z = 5;
 
             // draw!
-            renderer.render(scene, camera);
+            var render = function () {
+                requestAnimationFrame(render);
+
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+
+                var delta = clock.getDelta();
+
+                controls.update(delta);
+
+                renderer.render(scene, camera);
+            };
+
+            render();
 
         });
     </script>
