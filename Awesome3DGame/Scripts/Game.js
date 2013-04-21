@@ -1,5 +1,7 @@
 ﻿$(function () {
 
+    var UPDATE_TOLERANCE = 0.01;
+
     var container;
 
     var camera, scene, renderer;
@@ -266,13 +268,11 @@
 
     function vector3Changed(oldV3, newV3) {
 
-        var tolerance = 0.1;
-
         if (!oldV3 || !newV3) { return true; }
 
-        return ((Math.abs(oldV3.x - newV3.x) > tolerance) ||
-                (Math.abs(oldV3.y - newV3.y) > tolerance) ||
-                (Math.abs(oldV3.z - newV3.z) > tolerance));
+        return ((Math.abs(oldV3.x - newV3.x) > UPDATE_TOLERANCE) ||
+                (Math.abs(oldV3.y - newV3.y) > UPDATE_TOLERANCE) ||
+                (Math.abs(oldV3.z - newV3.z) > UPDATE_TOLERANCE));
     }
 
 
