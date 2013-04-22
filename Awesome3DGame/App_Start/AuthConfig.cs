@@ -26,7 +26,7 @@ namespace Awesome3DGame
             //    appId: "",
             //    appSecret: "");
 
-            //OAuthWebSecurity.RegisterGoogleClient();
+            OAuthWebSecurity.RegisterGoogleClient();
         }
     }
 }

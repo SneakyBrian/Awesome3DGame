@@ -23,15 +23,13 @@
 
     var playerHub = $.connection.playerHub;
 
-    var playerName = new Date().getTime().toString();
-
     var currentPosition = null;
     var currentRotation = null;
 
     playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz) {
 
         //if it's me, bail
-        if (name == playerName) {
+        if (name == playerId) {
             return;
         }
 
@@ -258,7 +256,7 @@
             currentRotation = { x: camera.rotation.x, y: camera.rotation.y, z: camera.rotation.z };
 
             //send the player camera position
-            playerHub.server.updatePlayerPosition(playerName,
+            playerHub.server.updatePlayerPosition(playerId,
                 currentPosition.x, currentPosition.y, currentPosition.z,
                 currentRotation.x, currentRotation.y, currentRotation.z);
         }

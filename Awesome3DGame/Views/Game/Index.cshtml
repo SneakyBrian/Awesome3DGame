@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Game";
+    Layout = "~/Views/Shared/_GameLayout.cshtml";
+}
+
+<div id="info">
+    Requires A Browser with WebGL Enabled - fly with WASD/RF/QE + mouse
+    <p class="no-webgl-message">
+        Sorry, you don't have WebGL enabled. Please visit <a href="http://get.webgl.org/">http://get.webgl.org/</a> for more info.
+    </p>
+</div>
+
+<div id="console"></div>
+
+@section scripts {
+
+<script>
+    var playerId = '@ViewBag.PlayerGuid.ToString()';
+</script>
+
+@Scripts.Render("~/bundles/game")
+
+}

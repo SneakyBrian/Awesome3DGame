@@ -50,8 +50,14 @@
             #stats #fps { background: transparent !important }
             #stats #fps #fpsText { color: #aaa !important }
             #stats #fps #fpsGraph { display: none }
+
+            .webgl #info p.no-webgl-message
+            {
+                display: none;
+            }
+
         </style>        
-        @*@Scripts.Render("~/bundles/modernizr")*@
+        @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
         @RenderBody()
