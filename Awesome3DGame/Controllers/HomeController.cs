@@ -31,9 +31,7 @@ namespace Awesome3DGame.Controllers
 
         public ActionResult Game()
         {
-            ViewBag.Message = "The Game.";
-
-            return View();
+            return RedirectToActionPermanent("Index", "Game");
         }
     }
 }
