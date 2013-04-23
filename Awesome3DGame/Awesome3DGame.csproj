@@ -188,6 +188,10 @@
     </Compile>
     <Compile Include="Hubs\PlayerHub.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CustomMembershipProvider.cs" />
+    <Compile Include="Models\CustomRoleProvider.cs" />
+    <Compile Include="Models\IUserRepository.cs" />
+    <Compile Include="Models\UserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

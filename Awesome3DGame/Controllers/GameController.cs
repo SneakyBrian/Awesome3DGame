@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Awesome3DGame.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class GameController : Controller
     {
         //
@@ -16,16 +16,16 @@ namespace Awesome3DGame.Controllers
 
         public ActionResult Index()
         {
-            //using (var hashAlgorithm = new SHA256CryptoServiceProvider())
-            //{
-            //    var inputBytes = Encoding.UTF8.GetBytes(User.Identity.Name);
+            using (var hashAlgorithm = new SHA256CryptoServiceProvider())
+            {
+                var inputBytes = Encoding.UTF8.GetBytes(User.Identity.Name);
 
-            //    var hashedBytes = hashAlgorithm.ComputeHash(inputBytes);
+                var hashedBytes = hashAlgorithm.ComputeHash(inputBytes);
 
-            //    ViewBag.PlayerGuid = new Guid(hashedBytes.Take(16).ToArray());
-            //}
+                ViewBag.PlayerGuid = new Guid(hashedBytes.Take(16).ToArray());
+            }
 
-            ViewBag.PlayerGuid = Guid.NewGuid();
+            //ViewBag.PlayerGuid = Guid.NewGuid();
 
             return View();
         }
