@@ -10,7 +10,7 @@ namespace Awesome3DGame.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.Message = "This demo shows building an interactive multiplayer 3D demo using various different technologies";
 
             return View();
         }
