@@ -252,6 +252,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Images\kitten.jpg" />
     <Content Include="Images\lensflare0.png" />
     <Content Include="Images\lensflare2.png" />
     <Content Include="Images\lensflare3.png" />
