@@ -121,6 +121,19 @@
         scene.fog = new THREE.Fog(0x000000, 3500, 15000);
         scene.fog.color.setHSL(0.51, 0.4, 0.01);
 
+        // Starfield    
+        var stars = new THREE.Geometry();
+        for (var i = 0; i < 10000; i++) {
+            stars.vertices.push(new THREE.Vector3(
+              10000 * (2.0 * Math.random() - 1.0),
+              10000 * (2.0 * Math.random() - 1.0),
+              10000 * (2.0 * Math.random() - 1.0)
+            ));
+        }
+        var star_stuff = new THREE.ParticleBasicMaterial();
+        var star_system = new THREE.ParticleSystem(stars, star_stuff);
+        scene.add(star_system);
+
 
         // lights
 
