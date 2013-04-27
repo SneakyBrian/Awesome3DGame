@@ -37,8 +37,6 @@
             return;
         }
 
-        //console.log(name + ", x:" + x + ", y:" + y + ", z:" + z);
-
         //find item in list with specified name
         var player = playerList[name];
 
@@ -47,14 +45,6 @@
 
             var mesh = new THREE.Mesh(cube, material);
 
-            //mesh.position.x = 8000 * (2.0 * Math.random() - 1.0);
-            //mesh.position.y = 8000 * (2.0 * Math.random() - 1.0);
-            //mesh.position.z = 8000 * (2.0 * Math.random() - 1.0);
-
-            //mesh.rotation.x = Math.random() * Math.PI;
-            //mesh.rotation.y = Math.random() * Math.PI;
-            //mesh.rotation.z = Math.random() * Math.PI;
-
             mesh.matrixAutoUpdate = false;
             mesh.updateMatrix();
 
@@ -62,7 +52,7 @@
 
             player = playerList[name] = mesh;
 
-            //GameConsoleLog("Player " + name + " joined");
+            gameConsoleLog("New player joined!");
         }
 
         //set x, y, z position
@@ -78,20 +68,25 @@
         player.updateMatrix();
     };
 
+    gameConsoleLog('Connecting to server...');
+
     //connect to hub
     $.connection.hub.start().done(function () {
 
+        gameConsoleLog('Initialising...');
         init();
+
+        gameConsoleLog('Starting Demo...');
         animate();
 
     });
 
-    function GameConsoleLog(message) {
+    function gameConsoleLog(message) {
 
-        $console.append(message);
+        $console.prepend($('<p>').text(message));
 
         while ($console.children().length > 10) {
-            $console.remove($console.children().first());
+            $console.remove($console.children().last());
         }
     }
 
@@ -107,9 +102,9 @@
 
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 15000);
 
-        camera.position.x = 500 * (2.0 * Math.random() - 1.0);
-        camera.position.y = 500 * (2.0 * Math.random() - 1.0);
-        camera.position.z = 500 * (2.0 * Math.random() - 1.0);
+        camera.position.x = 4000 * (2.0 * Math.random() - 1.0);
+        camera.position.y = 4000 * (2.0 * Math.random() - 1.0);
+        camera.position.z = 4000 * (2.0 * Math.random() - 1.0);
 
         camera.rotation.x = Math.random() * Math.PI;
         camera.rotation.y = Math.random() * Math.PI;
