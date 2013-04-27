@@ -86,12 +86,9 @@
         $console.prepend($('<p>').text(message));
 
         while ($console.children().length > 10) {
-            $console.remove($console.children().last());
+            $console.children().last().remove();
         }
     }
-
-    //init();
-    //animate();
 
     function init() {
 
