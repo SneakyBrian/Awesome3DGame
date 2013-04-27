@@ -1,34 +1,52 @@
 ﻿@{
-    ViewBag.Title = "About";
+    ViewBag.Title = "About This Demo";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <p>
+                @Html.ActionLink("Click here to see the Demo", "Index", "Game")
+            </p>
+        </div>
+    </section>
+}
 
 <article>
-    <p>
-        Use this area to provide additional information.
-    </p>
+    <h3>Built with the following technologies:</h3>
+    <ol class="round">
+        <li class="one">
+            <h5>Three.js</h5>
+            Three.js is a WebGL javascript library
+            <a href="http://threejs.org/">Learn more…</a>
+        </li>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
+        <li class="two">
+            <h5>SignalR</h5>
+            SignalR is Real-Time Communications library for the web
+            <a href="http://signalr.net/">Learn more…</a>
+        </li>
 
-    <p>
-        Use this area to provide additional information.
-    </p>
+        <li class="three">
+            <h5>Windows Azure</h5>
+            Windows Azure is Microsofts Cloud Hosting Solution
+            <a href="http://www.windowsazure.com/">Learn more…</a>
+        </li>
+    </ol>
 </article>
 
 <aside>
-    <h3>Aside Title</h3>
+    <h3>Additional Links</h3>
     <p>
-        Use this area to provide additional information.
+        Here are some additional links
     </p>
     <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+        <li><a href="https://github.com/SneakyBrian/Awesome3DGame">Get the code on Github</a></li>
+        <li><a href="http://tehc0dez.blogspot.co.uk/">Developer Blog</a></li>
+        <li><a href="https://twitter.com/thesneakybrian">Follow me on Twitter</a></li>
     </ul>
 </aside>

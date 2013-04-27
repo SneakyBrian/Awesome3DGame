@@ -10,14 +10,16 @@ namespace Awesome3DGame.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "This demo shows building an interactive multiplayer 3D demo using various different technologies";
+            //ViewBag.Message = "This demo shows building an interactive multiplayer 3D demo using various different technologies";
 
-            return View();
+            //return View();
+
+            return RedirectToActionPermanent("Index", "Game");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "This is an interactive massively multiplayer 3D demo.";
 
             return View();
         }

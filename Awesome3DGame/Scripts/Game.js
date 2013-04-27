@@ -1,5 +1,9 @@
 ﻿$(function () {
 
+    //if there's no webgl, just bail
+    if (!Modernizr.webgl)
+        return;
+
     var UPDATE_TOLERANCE = 0.01;
 
     var container;
