@@ -20,7 +20,8 @@ namespace Awesome3DGame
 
             bundles.Add(new ScriptBundle("~/bundles/three").Include(
                         "~/Scripts/three*",
-                        "~/Scripts/FlyControls.js"));
+                        "~/Scripts/FlyControls.js",
+                        "~/Scripts/ColladaLoader.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/game").Include(
                         "~/Scripts/Game.js"));

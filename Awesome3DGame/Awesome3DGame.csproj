@@ -252,10 +252,21 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Images\3d\ship2.xml" />
+    <Content Include="Images\3d\ship2\Color_005_.jpg" />
+    <Content Include="Images\3d\ship2\Color_C01_.jpg" />
+    <Content Include="Images\3d\ship2\EA_Fury_Tiney_Pa1.JPG" />
+    <Content Include="Images\3d\ship2\mainePane1.JPG" />
+    <Content Include="Images\3d\ship2\Mainhul1.JPG" />
+    <Content Include="Images\3d\ship2\Material3.jpg" />
+    <Content Include="Images\3d\ship2\UnderHull1.JPG" />
+    <Content Include="Images\3d\ship2\Wing1.JPG" />
+    <Content Include="Images\3d\ship2\__0135_DarkGray__.JPG" />
     <Content Include="Images\kitten.jpg" />
     <Content Include="Images\lensflare0.png" />
     <Content Include="Images\lensflare2.png" />
     <Content Include="Images\lensflare3.png" />
+    <Content Include="Scripts\ColladaLoader.js" />
     <Content Include="Scripts\FlyControls.js" />
     <Content Include="Scripts\Game.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -340,7 +351,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>2059</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:3240/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

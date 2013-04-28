@@ -18,10 +18,10 @@
 
     // world
 
-    var s = 250;
+    //var s = 250;
 
-    var cube = new THREE.CubeGeometry(s, s, s);
-    var material = new THREE.MeshPhongMaterial({ ambient: 0x333333, color: 0xffffff, specular: 0xffffff, shininess: 50 });
+    //var cube = new THREE.CubeGeometry(s, s, s);
+    //var material = new THREE.MeshPhongMaterial({ ambient: 0x333333, color: 0xffffff, specular: 0xffffff, shininess: 50 });
 
     var playerList = {};
 
@@ -29,6 +29,20 @@
 
     var currentPosition = null;
     var currentRotation = null;
+
+    var ship = null;
+
+    gameConsoleLog("Loading 3D Models...");
+
+    var loader = new THREE.ColladaLoader();
+    loader.load('/Images/3d/ship2.xml', function (result) {
+
+        gameConsoleLog("3D Models Loaded.");
+
+        ship = result.scene;
+
+        connectToServer();
+    });
 
     playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz) {
 
@@ -43,7 +57,9 @@
         //if the item isn't found, create one
         if (!player) {
 
-            var mesh = new THREE.Mesh(cube, material);
+            //var mesh = new THREE.Mesh(cube, material);
+
+            mesh = ship.clone();
 
             mesh.matrixAutoUpdate = false;
             mesh.updateMatrix();
@@ -68,18 +84,24 @@
         player.updateMatrix();
     };
 
-    gameConsoleLog('Connecting to server...');
+    function connectToServer() {
 
-    //connect to hub
-    $.connection.hub.start().done(function () {
+        gameConsoleLog('Connecting to server...');
 
-        gameConsoleLog('Initialising...');
-        init();
+        //connect to hub
+        $.connection.hub.start().done(function () {
 
-        gameConsoleLog('Starting Demo...');
-        animate();
+            gameConsoleLog('Connection to server established.');
 
-    });
+            gameConsoleLog('Initialising...');
+
+            init();
+            animate();
+
+            gameConsoleLog('Welcome to Demo!');
+        });
+
+    }
 
     function gameConsoleLog(message) {
 
