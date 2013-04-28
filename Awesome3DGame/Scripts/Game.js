@@ -121,9 +121,9 @@
 
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 15000);
 
-        camera.position.x = 4000 * (2.0 * Math.random() - 1.0);
-        camera.position.y = 4000 * (2.0 * Math.random() - 1.0);
-        camera.position.z = 4000 * (2.0 * Math.random() - 1.0);
+        camera.position.x = 500 * (2.0 * Math.random() - 1.0);
+        camera.position.y = 500 * (2.0 * Math.random() - 1.0);
+        camera.position.z = 500 * (2.0 * Math.random() - 1.0);
 
         camera.rotation.x = Math.random() * Math.PI;
         camera.rotation.y = Math.random() * Math.PI;
@@ -131,11 +131,11 @@
 
         controls = new THREE.FlyControls(camera);
 
-        controls.movementSpeed = 2500;
+        controls.movementSpeed = 250;
         controls.domElement = container;
         controls.rollSpeed = Math.PI / 6;
         controls.autoForward = false;
-        controls.dragToLook = false
+        controls.dragToLook = false;
 
         // scene
 
@@ -147,9 +147,9 @@
         var stars = new THREE.Geometry();
         for (var i = 0; i < 10000; i++) {
             stars.vertices.push(new THREE.Vector3(
-              10000 * (2.0 * Math.random() - 1.0),
-              10000 * (2.0 * Math.random() - 1.0),
-              10000 * (2.0 * Math.random() - 1.0)
+              15000 * (2.0 * Math.random() - 1.0),
+              15000 * (2.0 * Math.random() - 1.0),
+              15000 * (2.0 * Math.random() - 1.0)
             ));
         }
         var star_stuff = new THREE.ParticleBasicMaterial();
