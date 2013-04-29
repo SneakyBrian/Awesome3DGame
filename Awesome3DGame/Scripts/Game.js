@@ -294,7 +294,8 @@
             //send the player camera position
             playerHub.server.updatePlayerPosition(playerId,
                 currentPosition.x, currentPosition.y, currentPosition.z,
-                currentRotation.x, currentRotation.y, currentRotation.z);
+                currentRotation.x, currentRotation.y, currentRotation.z,
+                new Date().toISOString());
         }
 
         renderer.render(scene, camera);

@@ -6,9 +6,9 @@ namespace Awesome3DGame.Hubs
 {
     public class PlayerHub : Hub
     {
-        public void UpdatePlayerPosition(string name, double posx, double posy, double posz, double rotx, double roty, double rotz)
+        public void UpdatePlayerPosition(string name, double posx, double posy, double posz, double rotx, double roty, double rotz, DateTime timestamp)
         {
-            Clients.All.updatePlayerPosition(name, posx, posy, posz, rotx, roty, rotz, DateTime.UtcNow);
+            Clients.All.updatePlayerPosition(name, posx, posy, posz, rotx, roty, rotz, timestamp);
         }
     } 
 }
