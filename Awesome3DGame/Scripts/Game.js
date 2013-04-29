@@ -44,10 +44,15 @@
         connectToServer();
     });
 
-    playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz) {
+    playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz, timestamp) {
 
         //if it's me, bail
         if (name == playerId) {
+            return;
+        }
+
+        //if message time is more than a second behind current time, discard the message
+        if (new Date(new Date().toISOString()).getTime() - new Date(timestamp).getTime() > 1000) {
             return;
         }
 
