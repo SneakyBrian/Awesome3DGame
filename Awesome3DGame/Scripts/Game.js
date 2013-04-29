@@ -16,13 +16,6 @@
 
     var $console = $('#console');
 
-    // world
-
-    //var s = 250;
-
-    //var cube = new THREE.CubeGeometry(s, s, s);
-    //var material = new THREE.MeshPhongMaterial({ ambient: 0x333333, color: 0xffffff, specular: 0xffffff, shininess: 50 });
-
     var playerList = {};
 
     var playerHub = $.connection.playerHub;
@@ -44,15 +37,10 @@
         connectToServer();
     });
 
-    playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz, timestamp) {
+    playerHub.client.updatePlayerPosition = function (name, posx, posy, posz, rotx, roty, rotz) {
 
         //if it's me, bail
         if (name == playerId) {
-            return;
-        }
-
-        //if message time is more than a second behind current time, discard the message
-        if (new Date(new Date().toISOString()).getTime() - new Date(timestamp).getTime() > 1000) {
             return;
         }
 
@@ -61,8 +49,6 @@
 
         //if the item isn't found, create one
         if (!player) {
-
-            //var mesh = new THREE.Mesh(cube, material);
 
             mesh = ship.clone();
 
@@ -221,8 +207,6 @@
 
         container.appendChild(renderer.domElement);
 
-        //
-
         renderer.gammaInput = true;
         renderer.gammaOutput = true;
         renderer.physicallyBasedShading = true;
@@ -294,8 +278,7 @@
             //send the player camera position
             playerHub.server.updatePlayerPosition(playerId,
                 currentPosition.x, currentPosition.y, currentPosition.z,
-                currentRotation.x, currentRotation.y, currentRotation.z,
-                new Date().toISOString());
+                currentRotation.x, currentRotation.y, currentRotation.z);
         }
 
         renderer.render(scene, camera);
