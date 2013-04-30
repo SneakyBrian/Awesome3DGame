@@ -25,6 +25,8 @@
 
     var ship = null;
 
+    var radar = new Radar("radar");
+
     gameConsoleLog("Loading 3D Models...");
 
     var loader = new THREE.ColladaLoader();
@@ -73,6 +75,8 @@
         player.rotation.z = rotz;
 
         player.updateMatrix();
+
+        updateRadar();
     };
 
     function connectToServer() {
@@ -112,9 +116,9 @@
 
         camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 15000);
 
-        camera.position.x = 500 * (2.0 * Math.random() - 1.0);
-        camera.position.y = 500 * (2.0 * Math.random() - 1.0);
-        camera.position.z = 500 * (2.0 * Math.random() - 1.0);
+        camera.position.x = 4000 * (2.0 * Math.random() - 1.0);
+        camera.position.y = 4000 * (2.0 * Math.random() - 1.0);
+        camera.position.z = 4000 * (2.0 * Math.random() - 1.0);
 
         camera.rotation.x = Math.random() * Math.PI;
         camera.rotation.y = Math.random() * Math.PI;
@@ -279,6 +283,8 @@
             playerHub.server.updatePlayerPosition(playerId,
                 currentPosition.x, currentPosition.y, currentPosition.z,
                 currentRotation.x, currentRotation.y, currentRotation.z);
+
+            updateRadar();
         }
 
         renderer.render(scene, camera);
@@ -291,6 +297,32 @@
         return ((Math.abs(oldV3.x - newV3.x) > UPDATE_TOLERANCE) ||
                 (Math.abs(oldV3.y - newV3.y) > UPDATE_TOLERANCE) ||
                 (Math.abs(oldV3.z - newV3.z) > UPDATE_TOLERANCE));
+    }
+
+    function updateRadar() {
+
+        var items = [];
+
+        items.push(camera);
+
+        for (var i in playerList) {
+            items.push(playerList[i]);
+        }
+
+        var objs = items.map(function (t) {
+            var d = t.position.clone();
+            var m = camera.matrixWorld.clone();
+            m.getInverse(m);
+            m.multiplyVector3(d);
+
+            d.multiplyScalar(0.0001);
+            return {
+                position: { x: d.x, y: -d.y },
+                player: t === camera              
+            }
+        });
+        radar.setObjects(objs);
+
     }
 
 

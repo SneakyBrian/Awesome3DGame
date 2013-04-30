@@ -285,6 +285,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Radar.js" />
     <Content Include="Scripts\three.js" />
     <Content Include="Scripts\three.min.js" />
     <Content Include="Web.config" />
