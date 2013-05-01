@@ -9,15 +9,58 @@
                 <h1>@ViewBag.Title.</h1>
                 <h2>@ViewBag.Message</h2>
             </hgroup>
-            <p>
-                This demo uses WebGL for the graphics rendering. It also uses either WebSockets, Server-Sent Events or AJAX Long Polling for the real-time communications.
-            </p>
+                <p>Although the name suggest that this is a game, at present it is merely a demo. When you visit the site (in a browser that fulfills the requirements below) then you will be presented with a first-person view from your own personal spaceship, flying through the galaxy.</p>
+                <p>Other people also viewing the site at the same time as you will be visible to you as spaceships flying through space, their positions updated in real time. Your spaceship will also be visible to them.</p>
         </div>
     </section>
 }
 
 <article>
-    <h3>Built with the following technologies:</h3>
+
+    <h3>Controls</h3>
+
+    <p><strong>Mouse</strong></p>
+
+    <ul>
+        <li>Moving the mouse pointer away from the centre will turn your ship in that direction</li>
+        <li>Left click moves your ship forward</li>
+        <li>Right click moves your ship backwards</li>
+    </ul>
+
+    <p><strong>Keyboard</strong></p>
+
+    <ul>    
+        <li><strong>W</strong> moves your ship forward</li>
+        <li><strong>A</strong> moves your ship to the left</li>
+        <li><strong>S</strong> moves your ship backwards</li>
+        <li><strong>D</strong> moves your ship to the right</li>
+        <li><strong>Q</strong> rotates your ship around the forward axis to the left</li>
+        <li><strong>E</strong> rotates your ship around the forward axis the the right</li>
+        <li><strong>R</strong> moves your ship upwards</li>
+        <li><strong>F</strong> moves your ship down</li>
+    </ul>
+
+    <h3>HUD</h3>
+
+    <p>Top left displays your radar, which shows where other ships are in space. Your ship is represented by the large green dot in the centre, other ships are smaller red dots around. If a red dot is on top of the green dot that means that either the other ship is right next to you, or directly in front of you.</p>
+
+    <p>Bottom left displays the game info messages, which will tell you about events in the galaxy, such as a new player joining the game.</p>
+
+    <h3>Requirements</h3>
+
+    <p>You will need a browser that supports WebGL, running on a reasonably powerful computer with decent graphics hardware.</p>
+
+    <p>The currently recommended browser is <a href="http://www.google.com/chrome/" title="Google Chrome">Google Chrome</a>. The demo works ok on <a href="http://www.mozilla.org/firefox/" title="Firefox">Firefox</a> (but not as fast as Chrome), and not at all on <a href="http://windows.microsoft.com/en-GB/internet-explorer/download-ie" title="IE 10">IE 10</a> or less. Apparently this may be changed in IE 11 (<a href="http://www.theverge.com/2013/3/30/4165204/microsoft-bringing-webgl-support-internet-explorer-11-windows-blue" title="which will possibly support WebGL">which will possibly support WebGL</a>).</p>
+
+    <p>Google Chrome has also been found to work on Android devices, such as Tablets and recent phones. However what does not work at present is the touch interface for these devices. At present this is primarily a desktop-with-mouse driven experience. </p>
+
+
+    <h3>Technology</h3>
+
+    <p>This demo uses WebGL for the graphics rendering. It also uses either WebSockets, Server-Sent Events or AJAX Long Polling for the real-time communications.</p>
+
+    <p>It is built with the following technologies:</p>
+
     <ol class="round">
         <li class="one">
             <h5>Three.js</h5>
@@ -42,7 +85,7 @@
 <aside>
     <h3>Additional Links</h3>
     <p>
-        Here are some additional links
+        Here are some additional links:
     </p>
     <ul>
         <li><a href="https://github.com/SneakyBrian/Awesome3DGame">Get the code on Github</a></li>
