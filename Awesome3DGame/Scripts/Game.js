@@ -1,8 +1,12 @@
 ﻿$(function () {
 
     //if there's no webgl, just bail
-    if (!Modernizr.webgl)
+    if (!Modernizr.webgl) {
+        _gaq.push(['_trackEvent', 'Game', 'WebGL disabled']);
         return;
+    }
+
+    _gaq.push(['_trackEvent', 'Game', 'WebGL enabled']);
 
     var UPDATE_TOLERANCE = 0.01;
 
@@ -101,6 +105,8 @@
     function gameConsoleLog(message) {
 
         $console.prepend($('<p>').text(message));
+
+        _gaq.push(['_trackEvent', 'Game', 'console message', message]);
 
         while ($console.children().length > 10) {
             $console.children().last().remove();
