@@ -108,7 +108,7 @@
 
         _gaq.push(['_trackEvent', 'Game', 'console message', message]);
 
-        while ($console.children().length > 10) {
+        while ($console.children().length > 5) {
             $console.children().last().remove();
         }
     }
@@ -137,6 +137,10 @@
         controls.rollSpeed = Math.PI / 6;
         controls.autoForward = false;
         controls.dragToLook = false;
+
+        if (Modernizr.touch) {
+            initTouchControls();
+        }
 
         // scene
 
@@ -329,6 +333,47 @@
         });
         radar.setObjects(objs);
 
+    }
+
+    function initTouchControls() {
+
+        bindTouchToKey("#controls #control-forward",    87); //w
+        bindTouchToKey("#controls #control-back",       83); //s
+        bindTouchToKey("#controls #control-left",       65); //a
+        bindTouchToKey("#controls #control-right",      68); //d
+        bindTouchToKey("#controls #control-up",         82); //r
+        bindTouchToKey("#controls #control-down",       70); //f
+        bindTouchToKey("#controls #control-pitchup",    38); //up
+        bindTouchToKey("#controls #control-pitchdown",  40); //down
+        bindTouchToKey("#controls #control-yawleft",    37); //left
+        bindTouchToKey("#controls #control-yawright",   39); //right
+        bindTouchToKey("#controls #control-rollleft",   81); //q
+        bindTouchToKey("#controls #control-rollright",  69); //e
+    }
+
+    function bindTouchToKey(selector, key) {
+        $(selector)
+            .off("touchstart")
+            .off("touchend")
+            .on("touchstart", function () {
+                triggerKeyboardEvent("keydown", key);
+            }).on("touchend", function () {
+                triggerKeyboardEvent("keyup", key);
+            });
+    }
+
+    function triggerKeyboardEvent(event, keyCode) {
+        var eventObj = document.createEventObject ?
+            document.createEventObject() : document.createEvent("Events");
+
+        if (eventObj.initEvent) {
+            eventObj.initEvent(event, true, true);
+        }
+
+        eventObj.keyCode = keyCode;
+        eventObj.which = keyCode;
+
+        document.dispatchEvent ? document.dispatchEvent(eventObj) : document.fireEvent("on" + event, eventObj);
     }
 
 

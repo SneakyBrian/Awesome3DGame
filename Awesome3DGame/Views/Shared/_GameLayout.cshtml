@@ -27,15 +27,20 @@
             #console {
                 position: absolute;
                 bottom: 10px;
-                left: 10px; 
-                width: 50%;
+                width: 100%;
                 color: #ffffff;
                 padding: 5px;
                 font-family: Monospace;
                 font-size: 13px;
-                text-align: left;
-                z-index:100;
+                text-align: center;
                 line-height: 0.1;
+            }
+
+            .no-touch #console
+            {
+                width: 50%;
+                left: 10px;
+                text-align: left;
             }
 
             a {
@@ -93,6 +98,20 @@
                 z-index: 1;
                 top: 10px;
                 left: 10px;
+            }
+
+            .no-touch #controls
+            {
+                display: none;
+            }
+
+            .touch #controls
+            {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                width: 130px;
+                height: 230px;
             }
 
         </style>        
