@@ -4,17 +4,13 @@
 }
 
 <div id="info">
-    <p class="webgl-message">
-        Multiplayer 3D Demo - fly with WASD/RF/QE + mouse
-        <br />
-        Other spaceships are other players viewing the page. @Html.ActionLink("More Info", "About", "Home") 
-    </p>
+    <h3>Multiplayer 3D Demo - @Html.ActionLink("More Info", "About", "Home")</h3>
+    <p>Other spaceships are other players viewing the page</p>
+    <p class="webgl-message">Fly with WASD/RF/QE + mouse</p>
     <p class="no-webgl-message">
-        Sorry, you don't have WebGL enabled. Please visit <a href="http://get.webgl.org/">http://get.webgl.org/</a> for more info.
-        <br />
-        Read more info about this demo @Html.ActionLink("here", "About", "Home").
+        Sorry, you don't have WebGL enabled. Please visit <a href="http://get.webgl.org/">http://get.webgl.org/</a> for more info
     </p>
-    <img class="no-webgl-message" src="~/Images/kitten.jpg" />
+    <img class="no-webgl-message" src="~/Images/screenshot1.png" />
 </div>
 
 <div id="console"></div>

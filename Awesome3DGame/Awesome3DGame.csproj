@@ -266,6 +266,7 @@
     <Content Include="Images\lensflare0.png" />
     <Content Include="Images\lensflare2.png" />
     <Content Include="Images\lensflare3.png" />
+    <Content Include="Images\screenshot1.png" />
     <Content Include="Scripts\ColladaLoader.js" />
     <Content Include="Scripts\FlyControls.js" />
     <Content Include="Scripts\Game.js" />
@@ -329,6 +330,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_GameLayout.cshtml" />
     <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Home\Controls.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

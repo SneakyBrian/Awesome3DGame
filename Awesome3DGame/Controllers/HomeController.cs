@@ -35,5 +35,12 @@ namespace Awesome3DGame.Controllers
         {
             return RedirectToActionPermanent("Index", "Game");
         }
+
+        public ActionResult Controls()
+        {
+            ViewBag.Message = "Game Controls";
+
+            return View();
+        }
     }
 }
